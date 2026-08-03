@@ -1,17 +1,1 @@
-{
-  "name": "ChatVault",
-  "short_name": "ChatVault",
-  "description": "Lokales Archiv und Suchwerkzeug für ChatGPT-Exporte",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
-  "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
-}
+{"name":"ChatVault 2","short_name":"ChatVault","description":"Lokales Archiv für ChatGPT-Exporte","start_url":"./","display":"standalone","background_color":"#111827","theme_color":"#111827","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}

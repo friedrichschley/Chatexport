@@ -1,58 +1,25 @@
-# ChatVault
+# ChatVault 2
 
-ChatVault ist eine statische Browser-App zum lokalen Durchsuchen eines ChatGPT-Datenexports.
+Statische, lokal arbeitende Browser-App für ChatGPT-Datenexporte.
 
 ## Funktionen
 
-- Import der originalen ChatGPT-Export-ZIP
-- Alternativ direkter Import von `conversations.json`
-- Lokale Verarbeitung im Browser
-- Volltextsuche
-- Projektfilter
-- Sortierung nach Datum, Titel und Umfang
-- Favoriten
-- Einzelne Chats als Textdatei speichern
+- Import der originalen ChatGPT-Export-ZIP oder `conversations.json`
+- Drag-and-drop
+- dauerhafte lokale Speicherung mit IndexedDB
+- Volltextsuche über Titel, Inhalte, Projekte, Tags und Notizen
+- Projekte, Tags, Notizen und Favoriten
+- Mehrfachauswahl und Sammelaktionen
+- Erkennung möglicher Duplikate
+- Datums- und Rollenfilter
+- Einzelchat- und Archivexport
 - Hell-/Dunkelmodus
-- Installierbar als Web-App
-- Für GitHub Pages geeignet
+- GitHub-Pages-fähig
 
-## Datenschutz
+## Update auf GitHub
 
-Die Chat-Inhalte werden nicht an einen Server gesendet. Die Verarbeitung erfolgt im Browser.
+Alle Dateien in das vorhandene Repository hochladen und die vorhandenen Dateien ersetzen. Anschließend Commit ausführen. Falls zunächst noch die alte Fassung erscheint, die Seite mit `Strg + F5` neu laden.
 
-Die Bibliothek JSZip wird über ein öffentliches CDN geladen, damit ZIP-Dateien geöffnet werden können. Die eigentlichen Chatdaten werden dabei nicht hochgeladen.
+## Datensicherung
 
-## Auf GitHub Pages veröffentlichen
-
-1. Neues Repository bei GitHub anlegen, zum Beispiel `chatvault`.
-2. Alle Dateien aus diesem Ordner in das Repository hochladen.
-3. In GitHub öffnen:
-   `Settings` → `Pages`
-4. Unter `Build and deployment` auswählen:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/ (root)`
-5. Speichern.
-6. Nach kurzer Zeit erscheint die öffentliche Adresse der App.
-
-## Lokal testen
-
-Die Datei `index.html` kann direkt geöffnet werden. Für die Installierbarkeit und den Offline-Modus ist ein lokaler Webserver besser.
-
-Beispiel mit Python:
-
-```bash
-python -m http.server 8000
-```
-
-Danach im Browser öffnen:
-
-```text
-http://localhost:8000
-```
-
-## Unterstütztes Exportformat
-
-ChatVault sucht in einer ZIP-Datei nach `conversations.json`. Die App ist für das übliche ChatGPT-Datenexportformat ausgelegt.
-
-Projektinformationen sind im Export nicht bei allen älteren Chats einheitlich vorhanden. Solche Chats werden unter `Ohne Projekt` eingeordnet.
+Das lokale Archiv liegt im Browser. Regelmäßig über **Archiv sichern** eine JSON-Sicherung herunterladen.

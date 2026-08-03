@@ -1,11 +1,6 @@
-# Betriebssystem
-.DS_Store
-Thumbs.db
-
-# Editoren
-.vscode/
-.idea/
-
-# Lokale Testdateien und Exporte
 *.zip
 conversations.json
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
