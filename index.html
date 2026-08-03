@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ChatVault – lokales Archiv für ChatGPT-Exporte">
+  <meta name="theme-color" content="#0f172a">
+  <title>ChatVault</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="icon.svg" alt="" width="42" height="42">
+      <div>
+        <h1>ChatVault</h1>
+        <p>Privates Archiv für ChatGPT-Exporte</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="themeButton" class="icon-button" title="Darstellung wechseln" aria-label="Darstellung wechseln">◐</button>
+      <button id="clearButton" class="secondary" hidden>Archiv leeren</button>
+      <button id="importButton" class="primary">Export importieren</button>
+      <input id="fileInput" type="file" accept=".zip,.json,application/json,application/zip" hidden>
+    </div>
+  </header>
+
+  <section class="privacy-note">
+    <strong>Datenschutz:</strong> Die Verarbeitung erfolgt ausschließlich in deinem Browser.
+    Chat-Inhalte werden nicht an einen Server übertragen.
+  </section>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <h2>Projekte</h2>
+        <button id="allProjectsButton" class="text-button active">Alle</button>
+      </div>
+      <div id="projectList" class="project-list"></div>
+    </aside>
+
+    <section class="content">
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">⌂</div>
+        <h2>ChatGPT-Export öffnen</h2>
+        <p>
+          Wähle entweder die originale ZIP-Datei deines ChatGPT-Datenexports
+          oder direkt die Datei <code>conversations.json</code>.
+        </p>
+        <button id="emptyImportButton" class="primary">Datei auswählen</button>
+        <p class="small">Die Datei bleibt auf diesem Gerät.</p>
+      </div>
+
+      <div id="appView" hidden>
+        <section class="stats" aria-label="Statistik">
+          <article><span id="statProjects">0</span><small>Projekte</small></article>
+          <article><span id="statChats">0</span><small>Chats</small></article>
+          <article><span id="statMessages">0</span><small>Nachrichten</small></article>
+          <article><span id="statFavorites">0</span><small>Favoriten</small></article>
+        </section>
+
+        <section class="toolbar">
+          <label class="search">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Titel und Inhalte durchsuchen …">
+          </label>
+          <select id="sortSelect" aria-label="Sortierung">
+            <option value="newest">Neueste zuerst</option>
+            <option value="oldest">Älteste zuerst</option>
+            <option value="title">Titel A–Z</option>
+            <option value="size">Größte zuerst</option>
+          </select>
+          <label class="check">
+            <input id="favoritesOnly" type="checkbox">
+            Nur Favoriten
+          </label>
+        </section>
+
+        <div class="result-head">
+          <h2 id="viewTitle">Alle Chats</h2>
+          <span id="resultCount"></span>
+        </div>
+
+        <div id="chatList" class="chat-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="chatDialog">
+    <div class="dialog-head">
+      <div>
+        <span id="dialogProject" class="badge"></span>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogMeta"></p>
+      </div>
+      <div class="dialog-actions">
+        <button id="exportChatButton" class="secondary">Als Text speichern</button>
+        <button id="dialogClose" class="icon-button" aria-label="Schließen">×</button>
+      </div>
+    </div>
+    <div id="dialogMessages" class="messages"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
